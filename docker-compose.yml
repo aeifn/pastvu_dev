@@ -1,9 +1,31 @@
+version: '3'
+
 services:
+
+  mongo:
+    build: ./mongo
+    volumes:
+      - ./dump:/dump
+
+  redis:
+    image: redis:5.0.7
+
+#  mongoseed:
+#    image: mongo
+#    volumes:
+#      - ./dump:/dump
+#    entrypoint: ["mongorestore", "--host", "mongo", "--db", "pastvu", "/dump/pastvu"]
+
+
   app:
-    build: "./app"
-  downloader:
-    build: "./downloader"
-  sitemap:
-    build: "./sitemap"
-  uploader:
-    build: "./uploader"
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+
+#  downloader:
+#  sitemap:
+#  uploader:
