@@ -1,0 +1,9 @@
+services:
+  app:
+    build: "./app"
+  downloader:
+    build: "./downloader"
+  sitemap:
+    build: "./sitemap"
+  uploader:
+    build: "./uploader"
