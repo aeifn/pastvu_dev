@@ -10,6 +10,4 @@ COPY ./pastvu/ ./
 
 COPY ./local.config.js ./config
 
-EXPOSE 3000
-
-CMD [ "node", "/code/bin/run.js", "--script", "/code/app.js" ]
+CMD node /code/bin/run.js --script /code/${MODULE}.js

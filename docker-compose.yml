@@ -4,8 +4,6 @@ services:
 
   mongo:
     build: ./mongo
-    volumes:
-      - ./dump:/dump
 
   redis:
     image: redis:5.0.7
@@ -18,14 +16,30 @@ services:
 
 
   app:
-    build:
-      context: .
-      dockerfile: app.Dockerfile
+    build: .
+    expose:
+      - "3010" 
+      - "3011"
     environment:
-      - NODE_ENV=development
+      - MODULE=app
     ports:
       - "3000:3000"
 
-#  downloader:
-#  sitemap:
-#  uploader:
+  downloader:
+    build: .
+    expose:
+      - "3002"
+    environment:
+      - MODULE=downloader
+    
+  sitemap:
+    build: .
+    environment:
+      - MODULE=sitemap
+
+  uploader:
+    build: .
+    expose:
+      - "3001"
+    environment:
+      - MODULE=uploader

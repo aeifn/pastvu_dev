@@ -14,12 +14,6 @@ everyone of which should be run into docker container.
 
 # How to run
 
-```
-docker-compose run mongo
-```
-
-Then import dump into running container, as described here: https://github.com/pastvu/pastvu
-
 To start application:
 
 ```
