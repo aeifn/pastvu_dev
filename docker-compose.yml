@@ -8,13 +8,6 @@ services:
   redis:
     image: redis:5.0.7
 
-#  mongoseed:
-#    image: mongo
-#    volumes:
-#      - ./dump:/dump
-#    entrypoint: ["mongorestore", "--host", "mongo", "--db", "pastvu", "/dump/pastvu"]
-
-
   app:
     build: .
     expose:
