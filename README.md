@@ -17,5 +17,5 @@ everyone of which should be run into docker container.
 To start application:
 
 ```
-docker-compose run
+docker-compose up
 ```
