@@ -1,6 +1,6 @@
 # Pastvu.com docker sources
 
-We have two database service:
+We have two database services:
  * MongoDB
  * Redis
 
