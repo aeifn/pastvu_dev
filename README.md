@@ -19,3 +19,5 @@ To start application:
 ```
 docker-compose up
 ```
+
+Then navigate to http://localhost:3000/
