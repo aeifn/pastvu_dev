@@ -23,6 +23,7 @@ git clone --recursive https://github.com/aeifn/pastvu_dev
 To start application:
 
 ```
+cd pastvu_dev
 docker-compose up
 ```
 
