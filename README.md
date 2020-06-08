@@ -14,6 +14,12 @@ everyone of which should be run into docker container.
 
 # How to run
 
+Clone the repository with submodules:
+
+```
+git clone --recursive https://github.com/aeifn/pastvu_dev
+```
+
 To start application:
 
 ```
