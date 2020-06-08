@@ -18,6 +18,13 @@ services:
     ports:
       - "3000:3000"
 
+  uploader:
+    build: .
+    expose:
+      - "3001"
+    environment:
+      - MODULE=uploader
+      
   downloader:
     build: .
     expose:
@@ -29,10 +36,3 @@ services:
     build: .
     environment:
       - MODULE=sitemap
-
-  uploader:
-    build: .
-    expose:
-      - "3001"
-    environment:
-      - MODULE=uploader
