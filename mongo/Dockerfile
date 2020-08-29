@@ -1,6 +1,6 @@
 FROM alpine as downloader
 RUN apk add --no-cache curl
-RUN curl -L -o /pastvu.tar.gz https://github.com/PastVu/pastvu-sample-db/raw/master/pastvu.tar.gz
+RUN curl -L -o /pastvu.tar.gz https://varlamov.me/pastvu/github/pastvu.tar.gz
 RUN tar -xf /pastvu.tar.gz
 
 FROM ubuntu:xenial
