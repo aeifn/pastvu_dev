@@ -17,6 +17,9 @@ services:
       - MODULE=app
     ports:
       - "3000:3000"
+    depends_on:
+      - "mongo"
+      - "redis"
 
   uploader:
     build: .
@@ -24,6 +27,8 @@ services:
       - "3001"
     environment:
       - MODULE=uploader
+    depends_on:
+      - "app"
       
   downloader:
     build: .
@@ -31,8 +36,12 @@ services:
       - "3002"
     environment:
       - MODULE=downloader
+    depends_on:
+      - "app"
     
   sitemap:
     build: .
     environment:
       - MODULE=sitemap
+    depends_on:
+      - "app"
