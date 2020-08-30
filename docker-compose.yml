@@ -22,6 +22,7 @@ services:
       - "redis"
     volumes:
       - ./store:/store
+      - ./logs/app:/logs
 
   uploader:
     build: .
@@ -33,6 +34,7 @@ services:
       - "app"
     volumes:
       - ./store:/store
+      - ./logs/uploader:/logs
       
   downloader:
     build: .
@@ -43,7 +45,8 @@ services:
     depends_on:
       - "app"
     volumes:
-      - ./store:/store
+      - ./store:/store:ro
+      - ./logs/downloader:/logs
     
   sitemap:
     build: .
@@ -51,3 +54,5 @@ services:
       - MODULE=sitemap
     depends_on:
       - "app"
+    volumes:
+      - ./logs/sitemap:/logs

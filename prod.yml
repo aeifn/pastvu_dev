@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    volumes:
+      - /mnt/vdb1/store:/store
+      - /mnt/vdb1/www/www.pastvu.com/store/private:/store/private:ro
+  downloader:
+    volumes:
+      - /mnt/vdb1/store:/store:ro
+      - /mnt/vdb1/www/www.pastvu.com/store/private:/store/private:ro

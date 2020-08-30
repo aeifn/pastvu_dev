@@ -10,6 +10,6 @@ RUN npm install
 
 COPY ./pastvu/ ./
 
-COPY ./local.config.js ./config
+COPY ./local.${LANG}.config.js ./config/local.config.js
 
 CMD node /code/bin/run.js --script /code/${MODULE}.js
