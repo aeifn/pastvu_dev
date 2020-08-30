@@ -1,5 +1,7 @@
 FROM node
 
+RUN apt-get update && apt-get -y install graphicsmagick webp
+
 WORKDIR /code
 
 COPY ./pastvu/package*.json ./
