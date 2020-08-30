@@ -1,8 +1,3 @@
-FROM alpine as downloader
-RUN apk add --no-cache curl
-RUN curl -L -o /pastvu.tar.gz https://varlamov.me/pastvu/github/pastvu.tar.gz
-RUN tar -xf /pastvu.tar.gz
-
 FROM ubuntu:xenial
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -65,9 +60,6 @@ RUN set -ex; \
 RUN mkdir /docker-entrypoint-initdb.d
 
 # DUMP
-COPY --from=downloader /dump /tmp/dump
-COPY ./restore.sh /docker-entrypoint-initdb.d/restore.sh
-
 
 ENV GPG_KEYS 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
 RUN set -ex; \
