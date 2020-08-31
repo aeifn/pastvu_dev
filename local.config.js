@@ -13,7 +13,7 @@ module.exports = function(config, appRequire) {
     },
 
     client: {
-      hostname: '185.197.73.34',
+      hostname: '127.0.0.1 localhost mypastvu.com',
     },
 
     core: {
