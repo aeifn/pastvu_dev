@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: nginx.Dockerfile
+    depends_on:
+      - "app"
     ports:
       - "80:80"
     volumes:
