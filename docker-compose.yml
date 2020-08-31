@@ -21,12 +21,11 @@ services:
   app:
     build: .
     expose:
+      - "3000"
       - "3010" 
       - "3011"
     environment:
       - MODULE=app
-    ports:
-      - "3000:3000"
     depends_on:
       - "mongo"
       - "redis"
