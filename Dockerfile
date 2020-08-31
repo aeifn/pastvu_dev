@@ -1,15 +1,14 @@
-FROM node
-
-RUN apt-get update && apt-get -y install graphicsmagick webp
-
-WORKDIR /code
-
-COPY ./pastvu/package*.json ./
-
+FROM node AS builder
+WORKDIR code
+COPY ./pastvu .
 RUN npm install
+RUN npm install -g grunt
+RUN grunt
 
-COPY ./pastvu/ ./
-
-COPY ./local.config.js ./config
-
-CMD node /code/bin/run.js --script /code/${MODULE}.js
+FROM node
+RUN apt-get update && apt-get -y install graphicsmagick webp
+WORKDIR /code
+COPY --from=builder /appBuild/ .
+RUN npm install
+COPY ./production.config.js /etc/pastvu.config.js
+CMD node /code/bin/run.js --script /code/${MODULE}.js --config /etc/pastvu.config.js
