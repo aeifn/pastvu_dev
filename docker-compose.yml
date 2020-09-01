@@ -52,7 +52,7 @@ services:
     depends_on:
       - "app"
     volumes:
-      - ./store:/store
+      - ./store:/store:ro
     
   sitemap:
     build: .
