@@ -10,6 +10,7 @@ services:
       - "app_ru"
     ports:
       - "127.0.0.1:8080:80"
+    restart: always
     volumes:
       - ./store:/store:ro
       - ./logs/nginx:/logs
@@ -32,6 +33,7 @@ services:
     depends_on:
       - "mongo"
       - "redis"
+    restart: always
     volumes:
       - ./store:/store
       - ./logs/app_en:/logs
@@ -48,6 +50,7 @@ services:
     depends_on:
       - "mongo"
       - "redis"
+    restart: always
     volumes:
       - ./store:/store
       - ./logs/app_ru:/logs
@@ -60,6 +63,7 @@ services:
       - MODULE=uploader
     depends_on:
       - "app_en"
+    restart: always
     volumes:
       - ./store:/store
       - ./logs/uploader:/logs
@@ -72,6 +76,7 @@ services:
       - MODULE=downloader
     depends_on:
       - "app_en"
+    restart: always
     volumes:
       - ./store:/store:ro
       - ./logs/downloader:/logs
@@ -82,6 +87,7 @@ services:
       - MODULE=sitemap
     depends_on:
       - "app_en"
+    restart: always
     volumes:
       - sitemap:/sitemap
       - ./logs/sitemap:/logs
