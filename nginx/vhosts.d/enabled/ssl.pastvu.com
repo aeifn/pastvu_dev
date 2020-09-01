@@ -7,7 +7,7 @@ map $uri $filepath {
 }
 
 server {
-	listen		127.0.0.1:80;
+	listen		0.0.0.0:80;
 
 #	server_name	pastvu.com www.pastvu.com;
 
