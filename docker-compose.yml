@@ -12,6 +12,7 @@ services:
       - "127.0.0.1:8080:80"
     volumes:
       - ./store:/store:ro
+      - ./logs/nginx:/logs
       - sitemap:/sitemap
 
   mongo:
@@ -33,6 +34,7 @@ services:
       - "redis"
     volumes:
       - ./store:/store
+      - ./logs/app_en:/logs
 
   app_ru:
     build: .
@@ -48,6 +50,7 @@ services:
       - "redis"
     volumes:
       - ./store:/store
+      - ./logs/app_ru:/logs
 
   uploader:
     build: .
@@ -59,6 +62,7 @@ services:
       - "app_en"
     volumes:
       - ./store:/store
+      - ./logs/uploader:/logs
       
   downloader:
     build: .
@@ -70,6 +74,7 @@ services:
       - "app_en"
     volumes:
       - ./store:/store:ro
+      - ./logs/downloader:/logs
     
   sitemap:
     build: .
@@ -79,6 +84,7 @@ services:
       - "app_en"
     volumes:
       - sitemap:/sitemap
+      - ./logs/sitemap:/logs
 
 volumes:
   sitemap:
