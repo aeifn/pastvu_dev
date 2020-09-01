@@ -6,8 +6,7 @@ services:
       context: .
       dockerfile: nginx.Dockerfile
     depends_on:
-      - "app_ru"
-      - "app_en"
+      - "app"
     ports:
       - "8080:80"
     volumes:
@@ -19,7 +18,7 @@ services:
   redis:
     image: redis:5.0.7
 
-  app_en:
+  app:
     build: .
     expose:
       - "3000"
@@ -27,21 +26,6 @@ services:
       - "3011"
     environment:
       - MODULE=app
-    depends_on:
-      - "mongo"
-      - "redis"
-    volumes:
-      - ./store:/store
-
-  app_ru:
-    build: .
-    expose:
-      - "3000"
-      - "3010" 
-      - "3011"
-    environment:
-      - MODULE=app
-      - LANG=ru
     depends_on:
       - "mongo"
       - "redis"
@@ -55,7 +39,7 @@ services:
     environment:
       - MODULE=uploader
     depends_on:
-      - "app_en"
+      - "app"
     volumes:
       - ./store:/store
       
@@ -66,7 +50,7 @@ services:
     environment:
       - MODULE=downloader
     depends_on:
-      - "app_en"
+      - "app"
     volumes:
       - ./store:/store:ro
     
@@ -75,4 +59,4 @@ services:
     environment:
       - MODULE=sitemap
     depends_on:
-      - "app_en"
+      - "app"
