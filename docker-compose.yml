@@ -12,6 +12,7 @@ services:
       - "127.0.0.1:8080:80"
     volumes:
       - ./store:/store:ro
+      - sitemap:/sitemap
 
   mongo:
     build: ./mongo
@@ -37,7 +38,7 @@ services:
     build: .
     expose:
       - "3000"
-      - "3010" 
+      - "3010"
       - "3011"
     environment:
       - MODULE=app
@@ -76,3 +77,8 @@ services:
       - MODULE=sitemap
     depends_on:
       - "app_en"
+    volumes:
+      - sitemap:/sitemap
+
+volumes:
+  sitemap:
