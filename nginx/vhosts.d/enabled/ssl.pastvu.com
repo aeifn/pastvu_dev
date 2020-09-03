@@ -9,25 +9,14 @@ map $uri $filepath {
 server {
 	listen		0.0.0.0:80;
 
-#	server_name	pastvu.com www.pastvu.com;
-
-	limit_conn	gulag 200;
-
-	#redirect
-	set $https_redirect 0;
-	if ($host ~ '^www\.') { set $https_redirect 1; }
-	if ($https_redirect = 1) {
-		return 301 https://pastvu.com$request_uri;
-	}
-
 	root /public;
 
 	charset         utf-8;
 	etag            off;
 
-#	access_log   /var/log/nginx/www.pastvu.com-acc  main;
+	#access_log   /var/log/nginx/access.log  main;
 	access_log   off;
-	error_log    /var/log/nginx/www.pastvu.com-err  crit;
+	error_log    /var/log/nginx/error.log;
 
 
 	include /etc/nginx/mime.types;
