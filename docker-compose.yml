@@ -23,13 +23,17 @@ services:
     image: redis:5.0.7
 
   app_en:
-    build: .
+    build: 
+      context: .
+      args:
+        branch: 'en'
     expose:
       - "3000"
       - "3010" 
       - "3011"
     environment:
       - MODULE=app
+      - LANG=en
     depends_on:
       - "mongo"
       - "redis"
@@ -46,7 +50,6 @@ services:
       - "3011"
     environment:
       - MODULE=app
-      - LANG=ru
     depends_on:
       - "mongo"
       - "redis"

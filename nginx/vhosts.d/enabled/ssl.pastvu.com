@@ -117,7 +117,7 @@ server {
 			set $lang_code ru;
 		}
 
-		root /public;
+		root /public/$lang_code;
 
 		aio            on;
 		directio 512;
