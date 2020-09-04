@@ -1,17 +1,16 @@
 FROM node AS builder
-ARG branch=master
+ENV LANG en
 WORKDIR code
 COPY ./pastvu .
-RUN git checkout -f ${branch} && \
-	npm install && \
-	npm install -g grunt && \
-	grunt
+RUN npm install
+RUN npm install -g grunt
+RUN grunt
 
 FROM node
-ENV LANG ru
+ENV LANG en
 RUN apt-get update && apt-get -y install graphicsmagick webp
 WORKDIR /code
 COPY --from=builder /appBuild/ .
 RUN npm install
-COPY ./production.config.js /etc/app.config.js
-CMD node /code/bin/run.js --script /code/${MODULE}.js --config /etc/app.config.js
+COPY ./production.config.js /etc/pastvu.config.js
+CMD node /code/bin/run.js --script /code/${MODULE}.js --config /etc/pastvu.config.js
