@@ -12,5 +12,4 @@ RUN apt-get update && apt-get -y install graphicsmagick webp
 WORKDIR /code
 COPY --from=builder /appBuild/ .
 RUN npm install
-COPY ./production.config.js /etc/pastvu.config.js
-CMD node /code/bin/run.js --script /code/${MODULE}.js --config /etc/pastvu.config.js
+CMD node /code/bin/run.js --script /code/${MODULE}.js --config /config/pastvu.config.js
