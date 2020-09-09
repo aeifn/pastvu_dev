@@ -1,2 +1,5 @@
 store
 logs
+config
+pastvu
+docker-compose.override.yml
