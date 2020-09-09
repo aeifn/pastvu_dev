@@ -5,6 +5,9 @@ services:
     image: aeifn/nginx:stable
     depends_on:
       - "app_en"
+      - "uploader"
+      - "downloader"
+      - "sitemap"
       - "app_ru"
     ports:
       - "127.0.0.1:8080:80"
