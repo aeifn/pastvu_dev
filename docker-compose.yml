@@ -4,11 +4,11 @@ services:
   nginx:
     image: aeifn/nginx:stable
     depends_on:
+      - "app_ru"
       - "app_en"
       - "uploader"
       - "downloader"
       - "sitemap"
-      - "app_ru"
     ports:
       - "127.0.0.1:8080:80"
     restart: always
@@ -17,13 +17,13 @@ services:
       - sitemap:/sitemap
 
   mongo:
-    image: aeifn/mongo:stable
+    image: aeifn/mongo:3.2.22
 
   redis:
     image: redis:5.0.7
 
   app_en:
-    image: aeifn/pastvu:stable
+    image: aeifn/pastvu:en
     expose:
       - "3000"
       - "3010" 
@@ -62,7 +62,7 @@ services:
     environment:
       - MODULE=uploader
     depends_on:
-      - "app_en"
+      - "app_ru"
     restart: always
     volumes:
       - ./store:/store
@@ -75,7 +75,7 @@ services:
     environment:
       - MODULE=downloader
     depends_on:
-      - "app_en"
+      - "app_ru"
     restart: always
     volumes:
       - ./store:/store:ro
@@ -86,7 +86,7 @@ services:
     environment:
       - MODULE=sitemap
     depends_on:
-      - "app_en"
+      - "app_ru"
     restart: always
     volumes:
       - ./config:/config
