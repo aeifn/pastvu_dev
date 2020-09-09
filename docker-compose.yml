@@ -2,9 +2,7 @@ version: '3'
 
 services:
   nginx:
-    build:
-      context: .
-      dockerfile: nginx.Dockerfile
+    image: aeifn/nginx:stable
     depends_on:
       - "app_en"
       - "app_ru"
@@ -17,13 +15,13 @@ services:
       - sitemap:/sitemap
 
   mongo:
-    build: ./mongo
+    image: aeifn/mongo:stable
 
   redis:
     image: redis:5.0.7
 
   app_en:
-    build: .
+    image: aeifn/pastvu:stable
     expose:
       - "3000"
       - "3010" 
@@ -36,10 +34,10 @@ services:
     restart: always
     volumes:
       - ./store:/store
-      - ./logs/app_en:/logs
+      - ./config:/config
 
   app_ru:
-    build: .
+    image: aeifn/pastvu:stable
     expose:
       - "3000"
       - "3010"
@@ -56,7 +54,7 @@ services:
       - ./logs/app_ru:/logs
 
   uploader:
-    build: .
+    image: aeifn/pastvu:stable
     expose:
       - "3001"
     environment:
@@ -69,7 +67,7 @@ services:
       - ./logs/uploader:/logs
       
   downloader:
-    build: .
+    image: aeifn/pastvu:stable
     expose:
       - "3002"
     environment:
@@ -82,7 +80,7 @@ services:
       - ./logs/downloader:/logs
     
   sitemap:
-    build: .
+    image: aeifn/pastvu:stable
     environment:
       - MODULE=sitemap
     depends_on:
