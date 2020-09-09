@@ -1,7 +1,8 @@
 FROM node AS builder
-ENV LANG en
+ARG BRANCH
 WORKDIR code
 COPY ./pastvu .
+RUN git checkout ${BRANCH}
 RUN npm install
 RUN npm install -g grunt
 RUN grunt
