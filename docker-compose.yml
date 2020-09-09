@@ -11,7 +11,6 @@ services:
     restart: always
     volumes:
       - ./store:/store:ro
-      - ./logs/nginx:/logs
       - sitemap:/sitemap
 
   mongo:
@@ -51,7 +50,7 @@ services:
     restart: always
     volumes:
       - ./store:/store
-      - ./logs/app_ru:/logs
+      - ./config:/config
 
   uploader:
     image: aeifn/pastvu:stable
@@ -64,7 +63,7 @@ services:
     restart: always
     volumes:
       - ./store:/store
-      - ./logs/uploader:/logs
+      - ./config:/config
       
   downloader:
     image: aeifn/pastvu:stable
@@ -77,7 +76,7 @@ services:
     restart: always
     volumes:
       - ./store:/store:ro
-      - ./logs/downloader:/logs
+      - ./config:/config
     
   sitemap:
     image: aeifn/pastvu:stable
@@ -87,8 +86,8 @@ services:
       - "app_en"
     restart: always
     volumes:
+      - ./config:/config
       - sitemap:/sitemap
-      - ./logs/sitemap:/logs
 
 volumes:
   sitemap:
